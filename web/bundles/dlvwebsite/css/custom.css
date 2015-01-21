@@ -1,0 +1,146 @@
+body {
+    padding-top: 51px;
+}
+img#header-profile-picture {
+    margin: -6px 12px -6px -6px;
+    height: 32px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 8px 0 #7878b8;
+    -moz-box-shadow:    0 0 8px 0 #7878b8;
+    box-shadow:         0 0 8px 0 #7878b8;
+}
+.facebook-link {
+    color: #3a5795;
+    font-weight: bold;
+}
+.navbar-nav > li > a.facebook-link:hover, .navbar-nav > li > a.facebook-link:focus {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(19, 55, 131, 1);
+    background: #3a5795;
+}
+#language-dropdown > li > a{
+    text-align: right;
+}
+#language-dropdown > li > a > span{
+    float: left;
+    margin: 2px 0 0 -8px;
+}
+#speakers {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+@media (min-width: 1780px) {
+    #speakers {
+        position: fixed;
+    }
+}
+#speakers img {
+    float: left;
+    margin: 15px;
+    max-width: 15%;
+}
+#speakers img + img {
+    float: right;
+}
+#main-logo {
+    text-align: center;
+}
+#main-logo img {
+    max-width: 50%;
+}
+#main-logo h1 {
+    margin: -40px 15% 0;
+    padding: 0 15px;
+    color: #882255;
+}
+@media (max-width: 959px) {
+    #main-logo h1 {
+        margin: -30px 15% 0;
+        font-size: 38px;
+    }
+}
+@media (max-width: 719px) {
+    #main-logo h1 {
+        margin: -20px 15% 0;
+        font-size: 34px;
+    }
+}
+@media (max-width: 599px) {
+    #main-logo h1 {
+        margin: -15px 15% 0;
+        font-size: 28px;
+        padding: 0 10px;
+    }
+}
+@media (max-width: 479px) {
+    #main-logo h1 {
+        margin: -10px 15% 0;
+        font-size: 26px;
+        padding: 0 5px;
+    }
+}
+section#main-nav {
+    margin: 15px auto 0;
+    /*background: #1a1a1a;*/
+}
+ul#sub-nav {
+    background: #825 url("../images/subMenuFader.png") repeat-x bottom;
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+    padding: 6px 0;
+    border-radius: 5px;
+}
+ul#sub-nav > li{
+    float: left;
+    padding: 0 6px;
+}
+ul#sub-nav > li > a{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px 12px 0;
+    margin: 0 2px;
+}
+section#content, aside {
+    margin-top: 15px;
+}
+.panel-default > .panel-heading {
+    background: #313 url('../images/article_header_fader.png');
+}
+article.facebook-post {
+    float: left;
+    width: 100%;
+    margin-bottom: 8px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #526;
+}
+article.facebook-post h3 {
+    margin-bottom: 22px;
+}
+article.facebook-post h3 > span {
+    font-weight: normal;
+    font-size: 14px;
+}
+article.facebook-post p.message {
+    white-space: pre-wrap;
+}
+article.facebook-post .link > .well, article.facebook-post .link > .well:focus {
+    padding-left: 4px;
+    padding-right: 4px;
+    display: block;
+}
+article.facebook-post .link > .well:hover {
+    border: 1px solid #54609f;
+}
+article.facebook-post .link p.description {
+    font-size: 14px;
+    color: #444444;
+}
+article.facebook-post img.post-picture {
+    margin: 5px 0 15px;
+}
+article.facebook-post img {
+    width: 100%;
+}

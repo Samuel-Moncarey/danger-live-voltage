@@ -1,0 +1,59 @@
+dlv_website_homepage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Default:index, page: home, subpage: summary }
+    requirements:
+        page: home
+        subpage: concept|behind-the-scenes|news
+
+dlv_website_eventspage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Events:index, subpage: summary }
+    requirements:
+        page: events
+        subpage: upcomming|previous
+
+dlv_website_bookingspage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Bookings:index, subpage: summary }
+    requirements:
+        page: bookings
+        subpage: host-an-event|get-on-stage
+
+dlv_website_mediapage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Media:index, subpage: summary }
+    requirements:
+        page: media
+        subpage: pictures|videos
+
+dlv_website_linkspage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Links:index, subpage: summary }
+    requirements:
+        page: links
+        subpage: sponsors|bands|locations
+
+dlv_website_vippage:
+    path:       /{page}/{subpage}
+    defaults:   { _controller: DLVWebsiteBundle:Vip:index, subpage: profile }
+    requirements:
+        page: vip
+        subpage: profile|settings
+
+dlv_website_facebook_login:
+    path:       /facebook-login
+    defaults:   { _controller: DLVWebsiteBundle:Default:facebookLogin}
+
+dlv_website_facebook_logout:
+    path:       /facebook-logout
+    defaults:   { _controller: DLVWebsiteBundle:Default:facebookLogout}
+
+dlv_website_set_language:
+    path:       /set-language/{language}
+    defaults:   { _controller: DLVWebsiteBundle:Default:setLanguage}
+    requirements:
+        language: en|nl|fr
+
+dlv_website_ajax_get_facebookfeed:
+    path:       /ajax/get/facebookfeed
+    defaults:   { _controller: DLVWebsiteBundle:Ajax:getFacebookFeed}
