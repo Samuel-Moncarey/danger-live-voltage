@@ -175,9 +175,14 @@ class FacebookPost
         $likesCount = 0;
         if (array_key_exists('data', $likes)) {
             foreach ($likes['data'] as $like) {
-                $me = FacebookObject::load('/me');
-                if ($like->id == $me->getProperty('id')) {
-                    $userLikes = true;
+                if (FacebookObject::isLoaded('/me')) {
+                    $me = FacebookObject::load('/me');
+                    if ($like->id == $me->getProperty('id')) {
+                        $userLikes = true;
+                    }
+                    else {
+                        $likesCount++;
+                    }
                 }
                 else {
                     $likesCount++;

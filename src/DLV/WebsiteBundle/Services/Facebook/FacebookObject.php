@@ -59,6 +59,12 @@ class FacebookObject {
         }
         return $object;
     }
+    
+    public static function isLoaded($objectPath, $options = array())
+    {
+        $objectKey = $objectPath . ((count($options))? '?' . http_build_query($options) : '');
+        return array_key_exists($objectKey, self::$loadedObjects);
+    }
 
     /**
      * @param GraphObject $object

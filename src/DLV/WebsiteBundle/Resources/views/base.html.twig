@@ -10,8 +10,8 @@
     <title>{{ pagetitle }} | Danger Live Voltage</title>
 
     <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link href="http://localhost/perso/danger-live-voltage/web/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="http://localhost/perso/danger-live-voltage/web/bundles/dlvwebsite/css/custom.css" rel="stylesheet">
+    <link href="{{ url('dlv_website_homepage') }}bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ url('dlv_website_homepage') }}bundles/dlvwebsite/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -91,11 +91,11 @@
         </section>
         <section id="banner">
             <div id="speakers">
-                <img src="http://localhost/perso/danger-live-voltage/web/bundles/dlvwebsite/images/left_speaker.png">
-                <img src="http://localhost/perso/danger-live-voltage/web/bundles/dlvwebsite/images/right_speaker.png">
+                <img src="{{ url('dlv_website_homepage') }}bundles/dlvwebsite/images/left_speaker.png">
+                <img src="{{ url('dlv_website_homepage') }}bundles/dlvwebsite/images/right_speaker.png">
             </div>
             <div id="main-logo">
-                <img src="http://localhost/perso/danger-live-voltage/web/bundles/dlvwebsite/images/dlv_logo.png">
+                <img src="{{ url('dlv_website_homepage') }}bundles/dlvwebsite/images/dlv_logo.png">
                 <h1>Danger Live Voltage</h1>
             </div>
         </section>
@@ -144,10 +144,10 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://localhost/perso/danger-live-voltage/web/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ url('dlv_website_homepage') }}bootstrap/js/bootstrap.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://localhost/perso/danger-live-voltage/web/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{{ url('dlv_website_homepage') }}bootstrap/js/ie10-viewport-bug-workaround.js"></script>
 
     <script>
         $(function(){
@@ -241,7 +241,7 @@
 
             $.ajax({
                 'type': 'GET',
-                'url': 'http://localhost/perso/danger-live-voltage/web/app_dev.php/ajax/get/facebookfeed',
+                'url': '{{ url('dlv_website_homepage') }}ajax/get/facebookfeed',
                 'dataType': 'json',
                 'success': function(data) {
                     $.each(data, function() {

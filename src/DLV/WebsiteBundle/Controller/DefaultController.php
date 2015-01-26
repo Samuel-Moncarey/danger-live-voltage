@@ -71,13 +71,15 @@ class DefaultController extends Controller
     /**
      *
      */
-    protected function initialize()
+    protected function initialize($register = false)
     {
         $this->request = $this->get('request');
         $this->session = $this->get('session');
         $this->session->start();
         $this->lastRequestAttr = $this->session->get('lastRequestAttr', $this->request->attributes);
-        $this->session->set('lastRequestAttr', $this->request->attributes);
+        if ($register) {
+            $this->session->set('lastRequestAttr', $this->request->attributes);
+        }
         $this->language = $this->session->get('language', $this->getLanguageFromHeaders());
         $this->session->set('language', $this->language);
         $this->alert = new Alert();
@@ -130,7 +132,7 @@ class DefaultController extends Controller
     public function indexAction($page, $subpage)
     {
         ob_start();
-        $this->initialize();
+        $this->initialize(true);
         $header = new Header($this->request, $this->get('router'), $this->language, $this->user, $this->facebookLoginUrl);
         $this->template_data['header'] = $header->toArray();
         $this->template_data['pagetitle'] = $header->getPageTitle();
