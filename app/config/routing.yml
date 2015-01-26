@@ -1,0 +1,3 @@
+dlv_website:
+    resource: "@DLVWebsiteBundle/Resources/config/routing.yml"
+    prefix:   /

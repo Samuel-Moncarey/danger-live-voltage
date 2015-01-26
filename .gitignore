@@ -1,5 +1,7 @@
 .idea
-app
+app/logs
+app/cache
+app/config/parameters.yml
 bin
 vendor
-/nbproject/private/
+nbproject
