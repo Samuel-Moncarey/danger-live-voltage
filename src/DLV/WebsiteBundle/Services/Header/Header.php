@@ -268,15 +268,23 @@ class Header
             }
         }
     }
+    
+    public function addBreadcrumb(NavigationItem $crumb, $name = 'event')
+    {
+        $this->breadcrumbs[$name] = $crumb;
+    }
 
     /**
      *
      */
     private function setActiveItems()
     {
-        $this->activePage = $this->request->attributes->get('page');
+        $this->activePage = $this->request->attributes->get('page','events');
         $this->pages[$this->activePage]->setActive();
-        $this->activeSubPage = $this->request->attributes->get('subpage', 'summary');
+        $this->activeSubPage = $this->request->attributes->get(
+                'subpage',
+                (($this->request->attributes->has('slug'))? 'event' : 'summary')
+            );
         if($this->activeSubPage != 'summary') {
             foreach ($this->pages[$this->activePage]->getSubPages() as $subPage) {
                 if ($subPage->getParameter('subpage') == $this->activeSubPage) {

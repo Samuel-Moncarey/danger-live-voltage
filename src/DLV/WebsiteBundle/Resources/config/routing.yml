@@ -12,6 +12,12 @@ dlv_website_eventspage:
         page: events
         subpage: upcomming|previous
 
+dlv_website_eventoverview:
+    path:       /event/{slug}
+    defaults:   { _controller: DLVWebsiteBundle:Events:event }
+    requirements:
+        slug: "[a-zA-Z0-9\-]+"
+
 dlv_website_bookingspage:
     path:       /{page}/{subpage}
     defaults:   { _controller: DLVWebsiteBundle:Bookings:index, subpage: summary }

@@ -115,7 +115,7 @@ class FacebookPost
         if (array_key_exists('message',$this->data)) {
             $message = htmlentities($this->data['message']);
             $message_tags = ((array_key_exists('message_tags', $this->data))? $this->data['message_tags'] : array());
-            $this->message = self::parseMessage($message, $message_tags);
+            $this->message = self::parseMessage($message, $message_tags, true);
         }
         elseif ($this->type == 'status') {
             $this->hidden = true;
@@ -221,7 +221,7 @@ class FacebookPost
 
                 $message = htmlentities($comment->message);
                 $message_tags = ((array_key_exists('message_tags', get_object_vars($comment)))? $comment->message_tags : array());
-                $commentMessage = self::parseMessage($message, $message_tags);
+                $commentMessage = self::parseMessage($message, $message_tags, true);
 
                 $commentLikes = $comment->like_count;
                 $commentLikesString = '';

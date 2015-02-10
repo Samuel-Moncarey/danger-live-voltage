@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table()
+ * @ORM\Table(name="events")
  * @ORM\Entity
  */
 class Event
@@ -38,7 +38,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=613)
      */
     private $description;
 

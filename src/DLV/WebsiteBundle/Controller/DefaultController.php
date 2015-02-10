@@ -69,7 +69,8 @@ class DefaultController extends Controller
     protected $response;
 
     /**
-     *
+     * Initializes all the properties needed for all requests
+     * @param bool $register (set to true to remember request as last request)
      */
     protected function initialize($register = false)
     {
@@ -136,7 +137,6 @@ class DefaultController extends Controller
         $header = new Header($this->request, $this->get('router'), $this->language, $this->user, $this->facebookLoginUrl);
         $this->template_data['header'] = $header->toArray();
         $this->template_data['pagetitle'] = $header->getPageTitle();
-        //print_r(FacebookPage::fetchPosts());
         $this->template_data['vardump'] = ob_get_clean();
         return $this->render('DLVWebsiteBundle:Default:' . $page . '/' . $subpage . '.html.twig', $this->template_data);
     }
