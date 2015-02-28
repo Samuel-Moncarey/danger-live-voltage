@@ -132,28 +132,24 @@ class FacebookPost
             $this->video = $this->data['source'];
         }
 
-        if($this->type == 'link') {
+        if($this->type == 'link' || $this->type == 'event') {
             $this->link['url'] = $this->data['link'];
             $linkData = array('name','description','caption','picture');
             foreach ($linkData as $dataKey) {
                 if (array_key_exists($dataKey,$this->data)) $this->link[$dataKey] = $this->data[$dataKey] ;
             }
-            if(preg_match('/facebook.com\/events/', $this->link['url'])) {
-                $event_id = null;
-                $link_parts = explode('/', $this->link['url']);
-                foreach ($link_parts as $urlparam) {
-                    if (preg_match('/^[0-9]+$/',$urlparam)) {
-                        $event_id = $urlparam;
-                    }
+            if($this->type == 'event') {
+                $this->type = 'link';
+                if (strpos('facebook.com', $this->link['url']) !== false) {
+                    $this->link['url'] = 'https://www.facebook.com' . $this->link['url'];
                 }
-                if (!is_null($event_id)) {
-                    $path = '/' . $event_id;
-                    $picture = FacebookObject::load($path . '/picture', array('redirect'=>false,'width'=>320));
-                    $event = FacebookObject::load($path)->asArray();
-                    if (array_key_exists('name', $event)) $this->link['name'] = $event['name'];
-                    if (array_key_exists('description', $event)) $this->link['description'] = $event['description'];
-                    if ($picture->getProperty('is_silhouette') === false) $this->link['picture'] = $picture->getProperty('url');
-                }
+                
+                    //$path = '/' . $post->getProperty('object_id');
+                    //$picture = FacebookObject::load($path . '/picture', array('redirect'=>false,'width'=>320));
+                    //$event = FacebookObject::load($path)->asArray();
+                    //if (array_key_exists('name', $event)) $this->link['name'] = $event['name'];
+                    //if (array_key_exists('description', $event)) $this->link['description'] = $event['description'];
+                    //if ($picture->getProperty('is_silhouette') === false) $this->link['picture'] = $picture->getProperty('url');
             }
             if (!is_null($this->message)) {
                 if (substr_count($this->message,'class="fb-message-link"') > 1 ) {
@@ -313,7 +309,9 @@ class FacebookPost
             $linkUrl = $graphObject->getProperty('link');
             $name = htmlentities($tag->name);
             $link = '<a class="facebook-link" href="' . $linkUrl . '" target="_blank">' . $name . '</a>';
-            $message = substr_replace($message, $link, (strpos($message, $name)), strlen($name));
+            if (strpos($message, $name) !== false) {
+                $message = substr_replace($message, $link, (strpos($message, $name)), strlen($name));
+            }
         }
         return $message;
     }
@@ -334,6 +332,12 @@ class FacebookPost
             $graphObject = FacebookObject::load($path);
             $linkUrl = $graphObject->getProperty('link');
             $name = htmlentities($tag->name);
+            if ($name=="") {
+                continue;
+            }
+            if ($tag->type == "event" && strpos($tag->type, $story) == false) {
+                $name = 'event';
+            }
             $link = '<a class="facebook-link" href="' . $linkUrl . '" target="_blank">' . $name . '</a>';
             $title = substr_replace($title, $link, (strpos($title, $name)), strlen($name));
         }
@@ -376,7 +380,8 @@ class FacebookPost
                 $graphObject = FacebookObject::load($path);
                 $linkUrl = $graphObject->getProperty('link');
                 if (is_null($linkUrl) && array_key_exists('location',get_object_vars($recipient))) {
-                    $linkUrl = 'https://www.facebook.com/events/' . $recipient->id;
+                    //$linkUrl = 'https://www.facebook.com/events/' . $recipient->id;
+                    continue;
                 }
                 $link = '<a class="facebook-link" href="' . $linkUrl . '" target="_blank">' . $recipient->name . '</a>';
                 $toLinks[] = $link;
@@ -437,8 +442,8 @@ class FacebookPost
                 if (is_string($to)) $action = 'posted to';
                 break;
             default:
-                if (is_null($to)) $action = 'shared a ' . $type ;
-                if (is_string($to)) $action = 'shared a ' . $type . ' to';
+                if (is_null($to)) $action = 'shared a' . ((in_array(substr(strtolower($type), 0, 1),array('a','e','i','o','u','y'))) ? 'n' : '' ) . ' ' . $type ;
+                if (is_string($to)) $action = 'shared a' . ((in_array(substr(strtolower($type), 0, 1),array('a','e','i','o','u','y'))) ? 'n' : '' ) . ' ' . $type . ' to';
                 break;
         }
         $title = $from . ' ' . $action;
