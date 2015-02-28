@@ -63,3 +63,7 @@ dlv_website_set_language:
 dlv_website_ajax_get_facebookfeed:
     path:       /ajax/get/facebookfeed
     defaults:   { _controller: DLVWebsiteBundle:Ajax:getFacebookFeed}
+
+dlv_website_ajax_get_facebookpost:
+    path:       /ajax/get/facebookpost
+    defaults:   { _controller: DLVWebsiteBundle:Ajax:getFacebookPost}

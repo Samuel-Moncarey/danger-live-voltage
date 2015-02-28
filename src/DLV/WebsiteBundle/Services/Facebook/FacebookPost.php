@@ -248,6 +248,9 @@ class FacebookPost
     }
 
     public function toArray() {
+        
+        if ($this->hidden) return array('id'=> $this->id, 'hidden'=> true);
+        
         $post = array(
             'id'=> $this->id,
             'title'=> $this->title,
