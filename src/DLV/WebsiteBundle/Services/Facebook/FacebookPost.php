@@ -143,13 +143,6 @@ class FacebookPost
                 if (strpos('facebook.com', $this->link['url']) !== false) {
                     $this->link['url'] = 'https://www.facebook.com' . $this->link['url'];
                 }
-                
-                    //$path = '/' . $post->getProperty('object_id');
-                    //$picture = FacebookObject::load($path . '/picture', array('redirect'=>false,'width'=>320));
-                    //$event = FacebookObject::load($path)->asArray();
-                    //if (array_key_exists('name', $event)) $this->link['name'] = $event['name'];
-                    //if (array_key_exists('description', $event)) $this->link['description'] = $event['description'];
-                    //if ($picture->getProperty('is_silhouette') === false) $this->link['picture'] = $picture->getProperty('url');
             }
             if (!is_null($this->message)) {
                 if (substr_count($this->message,'class="fb-message-link"') > 1 ) {
